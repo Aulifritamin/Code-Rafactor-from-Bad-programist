@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class BulletShooter : MonoBehaviour
 {
     [SerializeField] private Bullet _bulletPrefab;
@@ -23,7 +22,7 @@ public class BulletShooter : MonoBehaviour
             var direction = (_target.position - transform.position).normalized;
             var newBullet = Instantiate(_bulletPrefab, transform.position + direction, Quaternion.identity);
 
-            if (newBullet.TryGetComponent<Rigidbody>(out var bulletRigidbody))
+            if (newBullet.TryGetComponent<Rigidbody>(out Rigidbody bulletRigidbody))
             {
                 bulletRigidbody.transform.up = direction;
                 bulletRigidbody.velocity = direction * _bulletSpeed;
